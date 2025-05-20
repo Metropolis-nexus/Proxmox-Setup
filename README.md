@@ -2,7 +2,7 @@
 
 ## Initial filesystem config
 
-- Boot into the installation media. Select the filesystem as ZFS with RAID1. Deselect all drives and only select 2 SSDsfor this.
+- Boot into the installation media. Select the filesystem as ZFS with RAID1. Deselect all drives and only select 2 SSDs for this.
   - ashift=12
   - compress=zstd
   - checksum=sha256
