@@ -20,7 +20,7 @@ nvme /path/to/drive -b 4096
 
 ## Initial filesystem config
 
-- Boot into the installation media. Select the 1 single drive and set the filesystem as ZFS. 
+- Boot into the installation media. Select the 2 drives and use ZFS RAID 1. 
   - ashift=12
   - compress=zstd
   - checksum=sha256
@@ -58,7 +58,9 @@ drive1='/dev/disk/by-id/nvme-FIRSTDRIVESERIALNUMBER'
 ```
 
 ```bash
+zpool detach rpool "${drive1}"
 blkdiscard --force "${drive1}" # Or secure erase
+wipefs "${drive1}" --all
 sgdisk -g "${drive1}"
 sgdisk -I -n 1:0:+1G -t 0:ef00 -c 0:'ESP' "${drive1}"
 mkfs.fat "${drive1}-part1" -F 32 -n 'ESP'
