@@ -10,6 +10,8 @@
 nvme id-ns /path/to/drive -H
 ```
 
+![LBA](LBA.png)
+
 - If the drives support 4096 sector size, run
 
 ```
