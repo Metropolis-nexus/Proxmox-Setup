@@ -6,7 +6,7 @@
 - Install the `nvme-cli` package.
 - Check if the NVME drives support 4096 sector size with:
 
-```
+```bash
 nvme id-ns /path/to/drive -H
 ```
 
@@ -14,7 +14,7 @@ nvme id-ns /path/to/drive -H
 
 - If the drives support 4096 sector size, run
 
-```
+```bash
 nvme /path/to/drive -b 4096
 ```
 
@@ -25,7 +25,7 @@ nvme /path/to/drive -b 4096
   - compress=zstd
   - checksum=sha256
   - copies=1
-  - ARC max size=2048 MiB
+  - ARC max size=16384 MiB
   - hdsize=32 GB
 
 - Install Proxmox
@@ -98,7 +98,7 @@ zpool create \
 
 ## Reconfigure the initramfs
 
-```
+```bash
 echo "cryptroot1 ${drive1}-part2 none initramfs,keyscript=decrypt_keyctl" >> /etc/crypttab
 sed -i 's/rpool/pve/' /etc/kernel/cmdline
 zfs set mountpoint=none rpool
@@ -111,7 +111,7 @@ update-initramfs -u -k all
 
 ## Migrate to pve pool
 
-```
+```bash
 zfs snapshot -r rpool/ROOT@copy
 zfs send -R rpool/ROOT@copy | zfs receive pve/ROOT
 ```
@@ -150,3 +150,10 @@ zpool attach pve /dev/mapper/cryptroot1 /dev/mapper/cryptroot2
 echo "cryptroot2 ${drive2}-part2 none initramfs,keyscript=decrypt_keyctl" >> /etc/crypttab
 update-initramfs -u -k all
 ```
+
+## Change root password
+
+```bash
+passwd
+```
+
