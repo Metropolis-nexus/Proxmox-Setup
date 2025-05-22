@@ -4,13 +4,13 @@
 
 - Boot into a live ISO.
 - Install the `nvme-cli` package.
-- Check if the NVME drives support 4Kn sector size with:
+- Check if the NVME drives support 4096 sector size with:
 
 ```
 nvme id-ns /path/to/drive -H
 ```
 
-- If the drives support 4Kn, run
+- If the drives support 4096 sector size, run
 
 ```
 nvme /path/to/drive -b 4096
