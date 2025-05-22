@@ -1,5 +1,21 @@
 # Proxmox Setup
 
+## Format Drives as 4Kn
+
+- Boot into a live ISO.
+- Install the `nvme-cli` package.
+- Check if the NVME drives support 4Kn sector size with:
+
+```
+nvme id-ns /path/to/drive -H
+```
+
+- If the drives support 4Kn, run
+
+```
+nvme /path/to/drive -b 4096
+```
+
 ## Initial filesystem config
 
 - Boot into the installation media. Select the filesystem as ZFS (RAID1). Deselect all drives and only select 2 SSDs for this.
