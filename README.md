@@ -1,6 +1,6 @@
 # Proxmox Setup
 
-## Format Drives as 4Kn
+## Format drives as 4Kn
 
 - Boot into a live ISO.
 - Install the `nvme-cli` package.
