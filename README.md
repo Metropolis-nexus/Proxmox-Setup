@@ -50,7 +50,7 @@ Node name -> Firewall -> Options -> Enable TCP flags filter and nftables
 ![Firewall-2](Firewall-2.png)
 ![Firewall-3](Firewall-3.png)
 
-## Format new drive
+## Reformat the first drive
 Format the first drive for the encrypted installation (different from the unencrypted drive the system currently runs on). For our purposes, lets call this first drive drive1.
 
 ```bash
@@ -70,7 +70,7 @@ sgdisk -I -n 2:0:+32G -t 0:8309 -c 0:'PVE' "${drive1}"
 sgdisk -I -n 3:0:0 -t 0:bf01 -c 0:'PVE Data' "${drive1}"
 ```
 
-## Configure encrypted partition
+## Configure pve pool
 
 ```bash
 apt install cryptsetup-initramfs
@@ -99,20 +99,54 @@ zpool create \
 ## Reconfigure the initramfs
 
 ```
-echo "cryptroot1 ${drive1}-part2 x-initrd.attach,keyscript=decrypt_keyctl" >> /etc/crypttab
+echo "cryptroot1 ${drive1}-part2 none initramfs,keyscript=decrypt_keyctl" >> /etc/crypttab
 sed -i 's/rpool/pve/' /etc/kernel/cmdline
+zfs set mountpoint=none rpool
+zfs set mountpoint=none rpool/ROOT
+zfs set mountpoint=none rpool/ROOT/pve-1
+zfs set mountpoint=none rpool/data
+zfs set mountpoint=none rpool/var-lib-vz
 update-initramfs -u -k all
-proxmox-boot-tool refresh
 ```
 
-## Migrate to encrypted pool
+## Migrate to pve pool
 
 ```
 zfs snapshot -r rpool/ROOT@copy
 zfs send -R rpool/ROOT@copy | zfs receive pve/ROOT
 ```
 
-## Cleanup
+## Clean up and partition the second drive
 
-- Reboot into the new system.
-- Wipe the old disk.
+- Reboot into the new system
+- Datacenter -> Storage -> Remove `local-zfs`.
+
+```bash
+zfs export rpool
+rm -rf /rpool
+drive2='/dev/disk/by-id/nvme-SECONDDRIVESERIALNUMBER'
+blkdiscard --force "${drive2}" # Or secure erase
+wipefs "${drive2}" --all
+sgdisk -g "${drive2}"
+sgdisk -I -n 1:0:+1G -t 0:ef00 -c 0:'ESP' "${drive2}"
+mkfs.fat "${drive2}-part1" -F 32 -n 'ESP'
+proxmox-boot-tool clean
+proxmox-boot-tool init "${drive2}-part1"
+sgdisk -I -n 2:0:+32G -t 0:8309 -c 0:'PVE' "${drive2}"
+sgdisk -I -n 3:0:0 -t 0:bf01 -c 0:'PVE Data' "${drive2}"
+```
+
+## Add mirrored drives to encrypted pool
+
+```bash
+cryptsetup luksFormat "${drive2}-part2" # Use the same password as the other partition
+cryptsetup open --allow-discards --persistent "${drive2}-part2" cryptroot2
+zpool attach pve /dev/mapper/cryptroot1 /dev/mapper/cryptroot2
+```
+
+## Reconfigure the initramfs
+
+```bash
+echo "cryptroot2 ${drive2}-part2 none initramfs,keyscript=decrypt_keyctl" >> /etc/crypttab
+update-initramfs -u -k all
+```
