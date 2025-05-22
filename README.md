@@ -73,7 +73,7 @@ sgdisk -I -n 3:0:0 -t 0:bf01 -c 0:'PVE Data' "${drive1}"
 ```bash
 apt install cryptsetup-initramfs
 cryptsetup luksFormat "${drive1}-part2"
-cryptsetup open "${drive1}-part2" cryptroot1
+cryptsetup open --allow-discards --persistent "${drive1}-part2" cryptroot1
 
 zpool create \
     -m none \
@@ -97,13 +97,8 @@ zpool create \
 ## Reconfigure the initramfs
 
 ```
-echo "cryptroot1 ${drive1}-part2 initramfs,keyscript=decrypt_keyctl" >> /etc/crypttab
+echo "cryptroot1 ${drive1}-part2 x-initrd.attach,keyscript=decrypt_keyctl" >> /etc/crypttab
 sed -i 's/rpool/pve/' /etc/kernel/cmdline
-zfs set mountpoint=none rpool
-zfs set mountpoint=none rpool/ROOT
-zfs set mountpoint=none rpool/ROOT/pve-1
-zfs set mountpoint=none rpool/data
-zfs set mountpoint=none rpool/var-lib-vz
 update-initramfs -u -k all
 proxmox-boot-tool refresh
 ```
