@@ -31,7 +31,7 @@ nvme /path/to/drive -b 4096
 ## Setup bond
 If the server has redundant networking, setup a bond (Ative-Backup or LACP):
 
-![Bond](bond.png)
+![Bond](Bond.png)
  
 ## Intial setup script
 The intial setup script to be run after installation is maintained [here](https://github.com/TommyTran732/Linux-Setup-Scripts).
