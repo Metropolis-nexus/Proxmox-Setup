@@ -157,6 +157,17 @@ update-initramfs -u -k all
 passwd
 ```
 
+## Rotate Proxmox Secrets
+
+```bash
+rm -rf .ssh/*
+ssh-keygen -t rsa -b 16384 -C root@<NODE NAME> -N '' -f /root/.ssh/id_rsa # You must generate an RSA key. If you generate an ed25519 key and name it id_rsa, Proxmox will keep spamming the authorized_keys file every boot.
+rm /etc/ssh/ssh_host_*
+dpkg-reconfigure openssh-server
+rm -rf /etc/pve/priv/*
+reboot
+```
+
 ## Setup TLS certificate
 
 - Datacenter -> ACME -> Add an account
