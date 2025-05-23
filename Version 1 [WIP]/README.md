@@ -174,3 +174,9 @@ reboot
 - Setup CAA records
 - Node Name -> Certificates -> ACME -> Add a challenge and order a certificate
 
+## Cleanup old snapshots
+
+```bash
+zfs destroy pve/ROOT/pve-1@copy
+zfs destroy pve/ROOT@copy
+```
