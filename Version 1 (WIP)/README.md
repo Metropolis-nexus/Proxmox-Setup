@@ -162,3 +162,4 @@ passwd
 - Datacenter -> ACME -> Add an account
 - Setup CAA records
 - Node Name -> Certificates -> ACME -> Add a challenge and order a certificate
+
