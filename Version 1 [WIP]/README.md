@@ -206,7 +206,7 @@ This is a relatively simple Secure Boot setup. We generate a UKI at `ESP/BOOT/BO
 mkdir /ESP{1,2}
 drive1='/dev/disk/by-id/nvme-FIRSTDRIVESERIALNUMBER'
 drive2='/dev/disk/by-id/nvme-SECONDDRIVESERIALNUMBER'
-echo "${drive1}-part2 /ESP1 vfat umask=077,nodev,noexec,nofail 0 2" >> /etc/crypttab
-echo "${drive2}-part2 /ESP2 vfat umask=077,nodev,noexec,nofail 0 2" >> /etc/crypttab
+echo "${drive1}-part2 /ESP1 vfat umask=077,nodev,noexec,nofail 0 2" >> /etc/fstab
+echo "${drive2}-part2 /ESP2 vfat umask=077,nodev,noexec,nofail 0 2" >> /etc/fstab
 mount -a
 ```
