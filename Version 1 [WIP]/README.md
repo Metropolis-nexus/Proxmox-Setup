@@ -198,15 +198,4 @@ rm -rf /boot/grub
 
 # Secure Boot Setup
 
-This is a relatively simple Secure Boot setup. We generate a UKI at `ESP/BOOT/BOOTX64.EFI` and PIN the encryption key against certain PCRs for attestation. A more advanced setup with detached headers to avoid having to put complete trust in the TPM will be in a future version of this document.
-
-## Mount ESP partitions
-
-```bash
-mkdir /ESP{1,2}
-drive1='/dev/disk/by-id/nvme-FIRSTDRIVESERIALNUMBER'
-drive2='/dev/disk/by-id/nvme-SECONDDRIVESERIALNUMBER'
-echo "${drive1}-part2 /ESP1 vfat umask=077,nodev,noexec,nofail 0 2" >> /etc/fstab
-echo "${drive2}-part2 /ESP2 vfat umask=077,nodev,noexec,nofail 0 2" >> /etc/fstab
-mount -a
-```
+Will be implemented once `systemd-ukify` becomes available on Proxmox.
