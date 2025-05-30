@@ -1,5 +1,7 @@
 # Proxmox Setup
 
+Credit to @bban160 for helping with the filesystem setup.
+
 ## Use 4K sectors
 
 - Boot into a live ISO.
