@@ -1,6 +1,6 @@
 # Proxmox Setup
 
-Credit to @bban160 for helping with the filesystem setup.
+Credit to [@bban160](https://github.com/bban160) for helping with the filesystem setup.
 
 ## Use 4K sectors
 
