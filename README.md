@@ -208,7 +208,7 @@ rm -rf /boot/grub
 ## Setup PVE Data pool
 
 - UMask 077
-- Put your encryption password in at `/.pve-data.key`
+- Put your encryption password in `/.pve-data.key`
 
 ```bash
 chattr +i /.pve-data.key
