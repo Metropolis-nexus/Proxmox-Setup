@@ -254,6 +254,32 @@ Go to Datacenter -> Storage and add the pve-data/data dataset:
 
 ![Storage](/Storage.png)
 
+## 
+
+Next, we need to set up a systemd service for automatic unlocking. Put the following inside `/etc/systemd/system/zfs-load-key.service`:
+
+```
+[Unit]
+Description=Load encryption keys
+DefaultDependencies=no
+After=zfs-import.target
+Before=zfs-mount.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/zfs load-key -a
+
+[Install]
+WantedBy=zfs-mount.service
+```
+
+Finally, enable the service:
+
+```bash
+systemctl enable zfs-load-key
+```
+
 # iDRAC Integration
 
 ```bash
