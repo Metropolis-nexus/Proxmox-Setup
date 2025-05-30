@@ -183,6 +183,11 @@ reboot
 - Setup CAA records
 - Node Name -> Certificates -> ACME -> Add a challenge and order a certificate
 
+## WebAuthn
+- Open Proxmox using its FQDN
+- Datacenter -> Options -> WebAuthn Settings -> Autofill
+- Datacenter -> Permissions -> Two Factor -> Register security key
+
 ## Cleanup old snapshots
 
 ```bash
@@ -199,6 +204,55 @@ apt purge grub* --allow-remove-essential
 rm -rf /var/lib/grub
 rm -rf /boot/grub
 ```
+
+## Setup PVE Data pool
+
+- UMask 077
+- Put your encryption password in at `/.pve-data.key`
+
+```bash
+chattr +i /.pve-data.key
+```
+
+```bash
+drive1='/dev/disk/by-id/nvme-FIRSTDRIVESERIALNUMBER'
+drive2='/dev/disk/by-id/nvme-SECONDDRIVESERIALNUMBER'
+
+zpool create \
+    -m none \
+    -o ashift=12 \
+    -o autoexpand=on \
+    -o autotrim=on \
+    -o comment='PVE Data' \
+    -o failmode=wait \
+    -O acltype=posix \
+    -O atime=off \
+    -O checksum=blake3 \
+    -O compression=zstd-3 \
+    -O dnodesize=auto \
+    -O encryption=on \
+    -O keyformat=passphrase \
+    -O keylocation='file:///.pve-data.key' \
+    -O overlay=off \
+    -O volmode=dev \
+    -O xattr=sa \
+    -O normalization=formD \
+    pve-data mirror "${drive1}-part3" "${drive2}-part3"
+
+zfs create pve-data/data
+zfs create -o mountpoint=/var/lib/vz pve-data/var-lib-vz
+```
+
+You may see an error saying "cannot mount '/var/lib/vz': directory is not empty, that is fine. Rectify it by quickly running these 2 commands:
+
+```bash
+rm -rf /var/lib/vz/*
+zfs mount -a
+```
+
+Go to Datacenter -> Storage and add the pve-data/data dataset:
+
+![Storage](/Storage.png)
 
 # iDRAC Integration
 
