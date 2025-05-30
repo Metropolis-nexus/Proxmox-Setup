@@ -234,7 +234,7 @@ zpool create \
     -O keyformat=passphrase \
     -O keylocation='file:///.pve-data.key' \
     -O overlay=off \
-    -O volmode=dev \
+    -O volmode=dev \ # Comment this out if you intend to add physical drives to the same pool
     -O xattr=sa \
     -O normalization=formD \
     pve-data mirror "${drive1}-part3" "${drive2}-part3"
