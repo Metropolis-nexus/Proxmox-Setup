@@ -103,7 +103,7 @@ zpool create \
 ## Reconfigure the initramfs
 
 ```bash
-echo "cryptroot1  ${drive1}-part2 pve initramfs,keyscript=decrypt_keyctl" >> /etc/crypttab
+echo "cryptroot1 ${drive1}-part2 pve initramfs,keyscript=decrypt_keyctl" >> /etc/crypttab
 sed -i 's/rpool/pve/' /etc/kernel/cmdline
 zfs set mountpoint=none rpool
 zfs set mountpoint=none rpool/ROOT
@@ -156,7 +156,7 @@ zpool attach pve /dev/mapper/cryptroot1 /dev/mapper/cryptroot2
 ## Reconfigure the initramfs
 
 ```bash
-echo "cryptroot2  ${drive2}-part2 pve initramfs,keyscript=decrypt_keyctl" >> /etc/crypttab
+echo "cryptroot2 ${drive2}-part2 pve initramfs,keyscript=decrypt_keyctl" >> /etc/crypttab
 update-initramfs -u -k all
 ```
 
