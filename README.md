@@ -254,9 +254,10 @@ Go to Datacenter -> Storage and add the pve-data/data dataset:
 
 ![Storage](/Storage.png)
 
-## 
+## Setup automatic unlocking
 
-Next, we need to set up a systemd service for automatic unlocking. Put the following inside `/etc/systemd/system/zfs-load-key.service`:
+- Change back to UMask 022
+- Put the following inside `/etc/systemd/system/zfs-load-key.service`:
 
 ```
 [Unit]
@@ -274,7 +275,7 @@ ExecStart=/usr/sbin/zfs load-key -a
 WantedBy=zfs-mount.service
 ```
 
-Finally, enable the service:
+- Enable the service:
 
 ```bash
 systemctl enable zfs-load-key
