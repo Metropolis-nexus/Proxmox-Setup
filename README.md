@@ -147,7 +147,7 @@ sgdisk -I -n 2:0:+32G -t 0:8309 -c 0:'PVE' "${drive2}"
 sgdisk -I -n 3:0:0 -t 0:bf01 -c 0:'PVE Data' "${drive2}"
 ```
 
-## Add mirrored drives to encrypted pool
+## Add second drive to encrypted pool
 
 ```bash
 cryptsetup luksFormat "${drive2}-part2" # Use the same password as the other partition
