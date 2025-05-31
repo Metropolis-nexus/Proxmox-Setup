@@ -17,7 +17,7 @@ nvme id-ns /path/to/drive -H
 - If the drives support 4096 sector size, run
 
 ```bash
-nvme /path/to/drive -b 4096
+nvme format /path/to/drive -b 4096
 ```
 
 ## Initial filesystem config
@@ -96,7 +96,6 @@ zpool create \
     -O compression=zstd-3 \
     -O dnodesize=auto \
     -O overlay=off \
-    -O volmode=dev \
     -O xattr=sa \
     -O normalization=formD \
     pve /dev/mapper/cryptroot1
@@ -236,7 +235,7 @@ zpool create \
     -O keyformat=passphrase \
     -O keylocation='file:///.pve-data.key' \
     -O overlay=off \
-    -O volmode=dev \ # Comment this out if you intend to add physical drives to the same pool
+    -O volmode=dev \
     -O xattr=sa \
     -O normalization=formD \
     pve-data mirror "${drive1}-part3" "${drive2}-part3"
