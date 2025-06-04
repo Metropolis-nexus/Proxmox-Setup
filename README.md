@@ -321,6 +321,15 @@ apt update
 apt install -y dcism srvadmin-idracadm8
 ```
 
+## Misc
+
+Datacenter -> Options -> Tag Style Override
+- Check Case-Sensitive: Apply to new edits
+- Color overrides (add these after the tags have been assigned to VMs):
+    - Protected: 008080
+    - OPNsense: d94f00
+    - Fedora-CoreOS: 3c6eb4
+
 # Secure Boot Setup
 
 Will be implemented once `systemd-ukify` becomes available on Proxmox.
