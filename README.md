@@ -328,6 +328,7 @@ Datacenter -> Options -> Tag Style Override
 - Check Case-Sensitive: Apply to new edits
 - Color overrides (add these after the tags have been assigned to VMs):
     - Protected: 008080
+    - Direct-SSH: 47737a
     - OPNsense: d94f00
     - Fedora-CoreOS: 3c6eb4
 
