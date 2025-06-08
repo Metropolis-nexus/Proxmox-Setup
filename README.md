@@ -208,10 +208,11 @@ rm -rf /boot/grub
 
 ## Setup PVE Data pool
 
-- UMask 077
-- Put your encryption password in `/.pve-data.key`
+Switch to umask 077, create a diceware passphrase, and save it to `/.pve-data.key`. Then, continue with:
 
 ```bash
+# Remove all but ASCII characters 
+perl -i -pe 's/[^ -~]//g' /.pve-data.key
 chattr +i /.pve-data.key
 ```
 
