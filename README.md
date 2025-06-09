@@ -44,7 +44,7 @@ Then set `vmbr0` bridge port to the bond.
 - Setup DNS servers (1.1.1.2, 1.0.0.2, 2606:4700:4700::1112)
 
 ## Intial setup script
-The intial setup script to be run after installation is maintained [here](https://github.com/TommyTran732/Linux-Setup-Scripts).
+The intial setup script to be run after installation is maintained [here](https://github.com/Metropolis-nexus/Linux-Setup-Scripts).
 
 ## Setup Firewalling
 
