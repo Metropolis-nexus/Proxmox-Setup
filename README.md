@@ -2,6 +2,10 @@
 
 Credit to [@bban160](https://github.com/bban160) for helping with the filesystem setup.
 
+## Disable Secure Boot
+
+We want Proxmox to install and configure everything with systemd-boot. If Secure Boot is enabled, it will use grub instead.
+
 ## Use 4K sectors
 
 - Boot into a live ISO.
