@@ -33,7 +33,7 @@ nvme format /path/to/drive -b 4096
 - Install Proxmox
 
 ## Setup bond
-If the server has redundant networking, setup a bond (Ative-Backup or LACP):
+If the server has redundant networking, setup a bond (Active-Backup or LACP):
 
 ![Bond](Bond.png)
  
@@ -133,7 +133,7 @@ drive2='/dev/disk/by-id/nvme-SECONDDRIVESERIALNUMBER'
 ```
 
 ```bash
-zfs export rpool
+zpool export rpool
 rm -rf /rpool
 blkdiscard --force "${drive2}" # Or secure erase
 wipefs "${drive2}" --all
