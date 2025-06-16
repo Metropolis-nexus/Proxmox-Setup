@@ -26,7 +26,7 @@ nvme format /path/to/drive -b 4096
 
 ## Initial filesystem config
 
-- Boot into the installation media. Select the 2 drives and use ZFS RAID 1. 
+- Boot into the installation media. Select the 2 drives and use ZFS RAID 1.
   - ashift=12
   - compress=zstd
   - checksum=sha256
@@ -34,13 +34,13 @@ nvme format /path/to/drive -b 4096
   - ARC max size=16384 MiB
   - hdsize=32 GB
 
-- Install Proxmox
+- Install Proxmox.
 
 ## Setup bond
 If the server has redundant networking, setup a bond (Active-Backup or LACP):
 
 ![Bond](Bond.png)
- 
+
 Then set `vmbr0` bridge port to the bond.
 
 ## Update DNS settings
@@ -68,7 +68,7 @@ drive1='/dev/disk/by-id/nvme-FIRSTDRIVESERIALNUMBER'
 ```
 
 ```bash
-zpool detach rpool "${drive1}"
+zpool detach rpool "${drive1}-part3"
 blkdiscard --force "${drive1}" # Or secure erase
 wipefs "${drive1}" --all
 sgdisk -g "${drive1}"
