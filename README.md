@@ -338,6 +338,7 @@ Datacenter -> Options -> Tag Style Override
     - OPNsense: d94f00
     - Fedora-CoreOS: 3c6eb4
     - TrueNAS: 4193d0
+    - Proxmox-Backup-Server: d6762c
 
 # Secure Boot Setup
 
