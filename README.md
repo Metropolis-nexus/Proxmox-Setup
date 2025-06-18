@@ -328,17 +328,19 @@ apt install -y dcism srvadmin-idracadm8
 
 ## Misc
 
-Datacenter -> Options -> Tag Style Override
-- Ordering: Configuration
-- Check Case-Sensitive: Apply to new edits
-- Color overrides (add these after the tags have been assigned to VMs):
-    - Protected: 008080
-    - SNAT: 684bf6
-    - SSH: 47737a
-    - OPNsense: d94f00
-    - Fedora-CoreOS: 3c6eb4
-    - TrueNAS: 4193d0
-    - Proxmox-Backup-Server: d6762c
+- Datacenter -> Options -> Tag Style Override
+    - Ordering: Configuration
+    - Check Case-Sensitive: Apply to new edits
+    - Color overrides (add these after the tags have been assigned to VMs):
+        - Protected: 008080
+        - SNAT: 684bf6
+        - SSH: 47737a
+        - OPNsense: d94f00
+        - Fedora-CoreOS: 3c6eb4
+        - TrueNAS: 4193d0
+        - Proxmox-Backup-Server: d6762c
+
+- Datacenter -> Notifications -> Configure SMTP configuration target
 
 # Secure Boot Setup
 
