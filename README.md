@@ -340,6 +340,7 @@ apt install -y dcism srvadmin-idracadm8
         - TrueNAS: 4193d0
         - Proxmox-Backup-Server: d6762c
 
+- Datacenter -> Users -> Remove root user's email address 
 - Datacenter -> Notifications -> Configure SMTP configuration target
 
 # Secure Boot Setup
