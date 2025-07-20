@@ -52,7 +52,7 @@ The intial setup script to be run after installation is maintained [here](https:
 
 ## Setup Firewalling
 
-Datacenter -> Firewall -> Add rules for PVE web panel, SSH, and ICMP
+Datacenter -> Firewall -> Add rules for PVE web panel, SSH, and Ping
 Datacenter -> Firewall -> Options -> Firewall -> Enable
 Node name -> Firewall -> Options -> Enable TCP flags filter and nftables
 
