@@ -299,28 +299,10 @@ Components: main
 Signed-By: /usr/share/keyrings/dell.gpg
 
 Types: deb
-URIs: https://linux.dell.com/repo/community/openmanage/iSM/5400/bullseye
-Suites: bullseye
+URIs: https://linux.dell.com/repo/community/openmanage/iSM/5400/noble
+Suites: noble
 Components: main
 Signed-By: /usr/share/keyrings/dell.gpg' > /etc/apt/sources.list.d/dell.sources
-
-echo 'deb https://deb.debian.org/debian/ bullseye main
-
-deb https://security.debian.org/debian-security/ bullseye-security main
-
-deb https://deb.debian.org/debian/ bullseye-updates main' > /etc/apt/sources.list.d/bullseye.list
-
-echo 'Package: *
-Pin: release n=bullseye
-Pin-Priority: 100
-
-Package: *
-Pin: release n=bullseye-security
-Pin-Priority: 100
-
-Package: *
-Pin: release n=bullseye-updates
-Pin-Priority: 100' > /etc/apt/preferences.d/99bullseye
 
 apt update
 apt install -y dcism srvadmin-idracadm8
@@ -345,4 +327,4 @@ apt install -y dcism srvadmin-idracadm8
 
 # Secure Boot Setup
 
-Will be implemented once `systemd-ukify` becomes available on Proxmox.
+Will be implemented once `systemd-ukify` soon now that Proxmox 9 is released.
