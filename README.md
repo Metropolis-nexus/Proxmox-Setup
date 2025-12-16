@@ -287,6 +287,27 @@ WantedBy=zfs-mount.service
 systemctl enable zfs-load-key
 ```
 
+# iDRAC Integration
+
+```bash
+curl -fsSL https://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc | gpg --dearmor -o /usr/share/keyrings/dell.gpg
+
+echo 'Types: deb
+URIs: https://linux.dell.com/repo/community/openmanage/11100/jammy/
+Suites: jammy
+Components: main
+Signed-By: /usr/share/keyrings/dell.gpg
+
+Types: deb
+URIs: https://linux.dell.com/repo/community/openmanage/iSM/5400/noble
+Suites: noble
+Components: main
+Signed-By: /usr/share/keyrings/dell.gpg' > /etc/apt/sources.list.d/dell.sources
+
+apt update
+apt install -y dcism srvadmin-idracadm8
+```
+
 ## Misc
 
 - Datacenter -> Options -> Tag Style Override
