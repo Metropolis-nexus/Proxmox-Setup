@@ -304,6 +304,9 @@ systemctl enable zfs-load-key
 - Datacenter -> Users -> Remove root user's email address 
 - Datacenter -> Notifications -> Configure SMTP configuration target
 
+## Additional packages
+- nload (very useful to check network usage in real time)
+
 # Secure Boot Setup
 
 Will be implemented once `systemd-ukify` soon now that Proxmox 9 is released.
