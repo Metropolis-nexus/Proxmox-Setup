@@ -55,8 +55,7 @@ The intial setup script to be run after installation is maintained [here](https:
 - Datacenter -> Firewall -> Add rules for PVE web panel, SSH, and Ping
 - Datacenter -> Firewall -> Options -> Firewall -> Enable
 - Node name -> Firewall -> Options -> Enable TCP flags filter
-
-⚠️ Port forwarding for OPNsense does not work if nftables is used in conjunction with `proxmox-firewall` version 1.2.0 and above, so do not enable nftables for now.
+- Node name -> Firewall -> Options -> Enable nftables (tech preview)
 
 ![Firewall-1](Firewall-1.png)
 ![Firewall-2](Firewall-2.png)
