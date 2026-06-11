@@ -325,7 +325,8 @@ apt install -y dcism srvadmin-idracadm8
         - Red-Hat-Enterprise-Linux: da2f20
         - Oracle-Linux: c94531
 
-- Datacenter -> Users -> Remove root user's email address 
+- Datacenter -> Users -> Remove root user's email address
+- Datacenter -> Roles -> Add MetropolisVMUser -> `Datastore.Audit Pool.Audit VM.Audit VM.Backup VM.Config.CDROM VM.Config.HWType VM.Config.Options VM.Console VM.GuestAgent.Audit VM.GuestAgent.FileRead VM.GuestAgent.FileSystemMgmt VM.GuestAgent.FileWrite VM.GuestAgent.Unrestricted VM.PowerMgmt VM.Snapshot VM.Snapshot.Rollback`
 - Datacenter -> Notifications -> Configure SMTP configuration target
 
 ## Additional packages
