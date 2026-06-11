@@ -322,6 +322,8 @@ apt install -y dcism srvadmin-idracadm8
         - Fedora-CoreOS: 3c6eb4
         - TrueNAS: 4193d0
         - Proxmox-Backup-Server: d6762c
+        - Red-Hat-Enterprise-Linux: da2f20
+        - Oracle-Linux: c94531
 
 - Datacenter -> Users -> Remove root user's email address 
 - Datacenter -> Notifications -> Configure SMTP configuration target
