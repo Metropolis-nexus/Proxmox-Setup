@@ -83,9 +83,22 @@ sgdisk -I -n 3:0:0 -t 0:bf01 -c 0:'PVE Data' "${drive1}"
 
 ## Configure pve pool
 
+- Verify which drive supports OPAL:
+
+```bash
+apt install sedutil
+sedutil --scan
+```
+
+- Setup the pool:
+
 ```bash
 apt install cryptsetup-initramfs
+
+# Add --hw-opal if the drive supports it
 cryptsetup luksFormat "${drive1}-part2"
+
+
 cryptsetup open --allow-discards --persistent "${drive1}-part2" cryptroot1
 
 zpool create \
